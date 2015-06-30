@@ -1,6 +1,6 @@
 # WolfEngine
 
-A C# .NET remake of the Wolfenstein-3D Engine. The challenge of this project: No libraries.
+A C# .NET remake of the Wolfenstein-3D Engine. The challenge of this project is to only use System.Drawing. _No OpenGL, no OpenTK, no DirectX, no XNA._
 
 ![Wolfenstein Logo (id Software)](http://www.adweek.com/socialtimes/files/2012/05/wolfenstein-logo-type-300x80.png)
 
