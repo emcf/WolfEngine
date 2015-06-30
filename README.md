@@ -1,13 +1,9 @@
 # WolfEngine
 
-A C# .NET remake of the Wolfenstein-3D Engine.
-
-The challenge of this project is to only use the System.Drawing framework.
-
-_No OpenGL, no OpenTK, no DirectX, no XNA._
-
+The challenge of this project is to only use the System.Drawing framework. That means _No OpenGL, no OpenTK, no DirectX, no XNA._
+<p align="center">
 ![Wolfenstein Logo (id Software)](http://www.adweek.com/socialtimes/files/2012/05/wolfenstein-logo-type-300x80.png)
-
+</p>
 ### Map creation
 
 Maps are in the format of (x₁, y₁, z₁)-(x₂, y₂, z₂)-texture.bmp.
