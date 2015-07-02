@@ -26,3 +26,5 @@ The vectors should be written in clockwise order.
 (20, 10, 20)-(10, 10, 20)-Textures/StoneWall.bmp
 (10, 10, 20)-(10, 10, 40)-Textures/StoneWall.bmp
 ```
+
+#### Read more at http://emcf.github.io/projects.html
