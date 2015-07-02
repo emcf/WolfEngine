@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace WolfEngine
 {
     class Wall
     {
-        public Vector3f Point1;
-        public Vector3f Point2;
-        public Vector3f Point3;
-        public Vector3f Point4;
+        public Vector2f Point1;
+        public Vector2f Point2;
+        public Vector2f Point3;
+        public Vector2f Point4;
+        public Vector2f Barycenter;
         public Bitmap WallTexture;
 
-        public Wall(Vector3f point1, Vector3f point3, Bitmap WallTexture)
+        public Wall(Vector2f point1, Vector2f point3, Bitmap WallTexture)
         {
             this.Point1 = point1;
             this.Point3 = point3;
@@ -25,8 +22,9 @@ namespace WolfEngine
             //  |                   |
             //  4 ----------------- 3
 
-            this.Point2 = new Vector3f(point1.y, point3.x, point3.z);
-            this.Point4 = new Vector3f(Point1.x, Point3.y, point1.z);
+            this.Point2 = new Vector2f(point1.y, point3.x);
+            this.Point4 = new Vector2f(Point1.x, Point3.y);
+            this.Barycenter = new Vector2f((point1.x + point3.x) / 2, (point1.y + point3.y) / 2);
             this.WallTexture = WallTexture;
         }
 
@@ -41,10 +39,10 @@ namespace WolfEngine
             //  |                   |
             //  4 ----------------- 3
 
-            filter.VertexLeftTop = Point1.Project().ToPoint();
-            filter.VertexTopRight = Point2.Project().ToPoint();
-            filter.VertexBottomLeft = Point4.Project().ToPoint();
-            filter.VertexRightBottom = Point3.Project().ToPoint();
+            filter.VertexLeftTop = Point1.ToPoint();
+            filter.VertexTopRight = Point2.ToPoint();
+            filter.VertexBottomLeft = Point4.ToPoint();
+            filter.VertexRightBottom = Point3.ToPoint();
 
             return filter.Bitmap;
         }

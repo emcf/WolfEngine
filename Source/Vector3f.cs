@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WolfEngine
 {
@@ -22,19 +18,6 @@ namespace WolfEngine
         public override string ToString()
         {
             return "(" + x.ToString() + ", " + y.ToString() + ", " + z.ToString() + ")";
-        }
-
-        public Vector2f Project()
-        {
-            // System.Windows.Forms.MessageBox.Show(x.ToString() + ", " + y.ToString() + ", " + z.ToString());
-            if (z == 0)
-            {
-                return new Vector2f(x, y);
-            }
-            else
-            {
-                return new Vector2f(x / z, y / z);
-            }
         }
     }
 }

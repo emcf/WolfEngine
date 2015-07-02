@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using WolfEngine;
 
 namespace YLScsDrawing.Imaging
 {
@@ -10,6 +10,7 @@ namespace YLScsDrawing.Imaging
     /// </summary>
     public class ImageData : IDisposable
     {
+        Bitmap error = new Bitmap("Textures//Error.bmp");
         private byte[,] _red, _green, _blue, _alpha;
         private bool _disposed = false;
 
@@ -111,39 +112,57 @@ namespace YLScsDrawing.Imaging
                 width = Math.Max(width, _red.GetLength(0));
                 height = Math.Max(height, _red.GetLength(1));
             }
-            Bitmap bmp = new Bitmap(width, height, PixelFormat.Format32bppArgb);
-            System.Drawing.Imaging.BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, width, height),
-                System.Drawing.Imaging.ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
 
-            // Get the address of the first line.
-            IntPtr ptr = bmpData.Scan0;
-
-            // Declare an array to hold the bytes of the bitmap.
-            int bytes = bmpData.Stride * bmp.Height;
-            byte[] rgbValues = new byte[bytes];
-
-            // set rgbValues
-            int offset = bmpData.Stride - width * 4;
-            int i = 0;
-            for (int y = 0; y < height; y++)
+            if (height != 0 && width != 0)
             {
-                for (int x = 0; x < width; x++)
+                Bitmap bmp = error;
+
+                try
                 {
-                    rgbValues[i] = checkArray(_blue, x, y) ? _blue[x, y] : (byte)0;
-                    rgbValues[i + 1] = checkArray(_green, x, y) ? _green[x, y] : (byte)0;
-                    rgbValues[i + 2] = checkArray(_red, x, y) ? _red[x, y] : (byte)0;
-                    rgbValues[i + 3] = checkArray(_alpha, x, y) ? _alpha[x, y] : (byte)255;
-                    i += 4;
+                    bmp = new Bitmap(width, height, PixelFormat.Format32bppArgb);
                 }
-                i += offset;
+                catch
+                {
+                    System.Windows.Forms.MessageBox.Show("Cannot render image with width and height of (" + width.ToString() + ", " + height.ToString() + ")", "Rendering Error");
+                }
+
+                System.Drawing.Imaging.BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, width, height),
+                    System.Drawing.Imaging.ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+
+                // Get the address of the first line.
+                IntPtr ptr = bmpData.Scan0;
+
+                // Declare an array to hold the bytes of the bitmap.
+                int bytes = bmpData.Stride * bmp.Height;
+                byte[] rgbValues = new byte[bytes];
+
+                // set rgbValues
+                int offset = bmpData.Stride - width * 4;
+                int i = 0;
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        rgbValues[i] = checkArray(_blue, x, y) ? _blue[x, y] : (byte)0;
+                        rgbValues[i + 1] = checkArray(_green, x, y) ? _green[x, y] : (byte)0;
+                        rgbValues[i + 2] = checkArray(_red, x, y) ? _red[x, y] : (byte)0;
+                        rgbValues[i + 3] = checkArray(_alpha, x, y) ? _alpha[x, y] : (byte)255;
+                        i += 4;
+                    }
+                    i += offset;
+                }
+
+                // Copy the RGB values back to the bitmap
+                System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
+
+                // Unlock the bits.
+                bmp.UnlockBits(bmpData);
+                return bmp;
             }
-
-            // Copy the RGB values back to the bitmap
-            System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
-
-            // Unlock the bits.
-            bmp.UnlockBits(bmpData);
-            return bmp;
+            else
+            {
+                return error;
+            }
         }
         # endregion
 

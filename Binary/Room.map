@@ -1,8 +1,8 @@
-(10, 10, 40)-(30, 10, 40)-Textures/StoneWall.bmp
-(30, 10, 40)-(30, 10, 30)-Textures/StoneWall.bmp
-(30, 10, 30)-(40, 10, 30)-Textures/StoneWall.bmp
-(40, 10, 30)-(40, 10, 10)-Textures/StoneWall.bmp
-(40, 10, 10)-(20, 10, 10)-Textures/StoneWall.bmp
-(20, 10, 10)-(20, 10, 20)-Textures/StoneWall.bmp
-(20, 10, 20)-(10, 10, 20)-Textures/StoneWall.bmp
-(10, 10, 20)-(10, 10, 40)-Textures/StoneWall.bmp
+(10, 40)-(30, 40)-Textures/BlueWall.bmp
+(30, 40)-(30, 30)-Textures/BlueWall.bmp
+(30, 30)-(40, 30)-Textures/BlueWall.bmp
+(40, 30)-(40, 10)-Textures/BlueWall.bmp
+(40, 10)-(20, 10)-Textures/BlueWall.bmp
+(20, 10)-(20, 20)-Textures/BlueWall.bmp
+(20, 20)-(10, 20)-Textures/BlueWall.bmp
+(10, 20)-(10, 40)-Textures/BlueWall.bmp

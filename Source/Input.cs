@@ -1,15 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WolfEngine
 {
     class Input
     {
-        public Vector2f MousePos;
+        // public Vector2f MousePos;
+
+        public bool isShooting(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public bool isMovingLeft(KeyEventArgs e)
         {
