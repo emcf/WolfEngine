@@ -5,4 +5,4 @@ The challenge of this project is to only use the System.Drawing framework. That 
 <img src="http://www.adweek.com/socialtimes/files/2012/05/wolfenstein-logo-type-300x80.png"/>
 </p>
 
-#### Read more at http://emcf.github.io
+#### Read how I made it and more at http://emcf.github.io
